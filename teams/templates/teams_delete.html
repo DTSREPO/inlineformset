@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Delete Team</title>
+</head>
+
+<body>
+
+<h1>Delete Team</h1>
+
+<form method="POST">{% csrf_token %}
+  <p>Really {{ team.name }} Do you want to delete?</p>
+
+  <input type="submit" value="Delete" />
+</form>
+
+</body>
+</html>

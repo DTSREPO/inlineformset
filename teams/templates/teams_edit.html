@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Edit team</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="{% static "js/addform.js" %}"></script>
+</head>
+
+<body>
+
+<h1>Edit team</h1>
+
+<form method="POST">{% csrf_token %}
+  {{ form.as_p }}
+
+  <table border="1px" id="id_team_table">
+    {{ formset.management_form }}
+
+    <thead>
+      <tr><th>name</th><th>Guard position</th><th>Delete</th></tr>
+    </thead>
+
+    <tbody>
+      {% for member_form in forms %}
+      <tr {% if forloop.first %}style="display:none;"{% endif %}>
+        <td>
+          {% for hidden in member_form.hidden_fields %}
+            {{ hidden }}
+          {% endfor %}
+
+          {{ member_form.name.errors }} {{ member_form.name }}
+        </td>
+        <td>{{ member_form.position.errors }} {{ member_form.position }}</td>
+        <td align="center">{{ member_form.DELETE }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <p>
+    <button type="button" onclick="addNewForm('#id_team_table tbody', '{{ formset.prefix }}')">Add input line</button>
+  </p>
+
+  <input type="submit" value="Save" />
+</form>
+
+</body>
+</html>

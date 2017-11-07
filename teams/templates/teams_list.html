@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Team list</title>
+</head>
+
+<body>
+
+<h1>Team list</h1>
+
+<p><a href="new">add to</a></p>
+
+<table border="1px">
+  <thead>
+    <tr><th>Edit</th><th>name</th><th>Delete</th></tr>
+  </thead>
+
+  <tbody>
+    {% for team in teams %}
+    <tr>
+      <td><a href="edit/{{ team.id }}">Edit</a></td>
+      <td>{{ team.name }}</td>
+      <td><a href="delete/{{ team.id }}">Delete</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</body>
+</html>
